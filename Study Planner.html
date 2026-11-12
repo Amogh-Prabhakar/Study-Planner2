@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CBSE Class 10 Study Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f2f5f9;
+        --surface: #fff;
+        --ink: #14213d;
+        --muted: #5b6678;
+        --line: #dbe2ec;
+        --accent: #0f766e;
+        --hi: #ffd23f;
+        --hi-ink: #3a2e00;
+        --brk: #e8edf4;
+        --c0: #2563eb;
+        --c1: #0f766e;
+        --c2: #b45309;
+        --c3: #7c3aed;
+        --c4: #be123c;
+        --c5: #4d7c0f;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0e1522;
+          --surface: #162033;
+          --ink: #e8eefc;
+          --muted: #9aa7bd;
+          --line: #273450;
+          --accent: #2dd4bf;
+          --hi: #ffd23f;
+          --hi-ink: #3a2e00;
+          --brk: #1b2740;
+          --c0: #60a5fa;
+          --c1: #2dd4bf;
+          --c2: #fbbf24;
+          --c3: #c4b5fd;
+          --c4: #fda4af;
+          --c5: #bef264;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        --bg: #0e1522;
+        --surface: #162033;
+        --ink: #e8eefc;
+        --muted: #9aa7bd;
+        --line: #273450;
+        --accent: #2dd4bf;
+        --brk: #1b2740;
+        --c0: #60a5fa;
+        --c1: #2dd4bf;
+        --c2: #fbbf24;
+        --c3: #c4b5fd;
+        --c4: #fda4af;
+        --c5: #bef264;
+      }
+
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 400 16px/1.5 "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+      }
+
+      main {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 20px 16px 56px;
+      }
+
+      h1, h2, h3 {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      .hero {
+        display: flex;
+        align-items: flex-end;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 8px 0 22px;
+      }
+
+      .count {
+        font-weight: 800;
+        font-size: clamp(64px, 16vw, 120px);
+        line-height: 0.85;
+        letter-spacing: -0.04em;
+      }
+
+      .count small {
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+
+      .phase {
+        background: var(--hi);
+        color: var(--hi-ink);
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-weight: 600;
+        max-width: 340px;
+      }
+
+      .phase span {
+        display: block;
+        font-weight: 400;
+        font-size: 14px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .stat {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 26px;
+        line-height: 1.1;
+      }
+
+      .stat span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 5px;
+      }
+
+      section {
+        margin-top: 28px;
+      }
+
+      h2 {
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .sub {
+        color: var(--muted);
+        font-size: 14px;
+        margin: -6px 0 12px;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 104px 1fr;
+        gap: 12px;
+        align-items: center;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .row:first-of-type {
+        border-radius: 12px 12px 0 0;
+      }
+
+      .row:last-of-type {
+        border-bottom: 0;
+        border-radius: 0 0 12px 12px;
+      }
+
+      .time {
+        font-size: 14px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .blk {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .blk input {
+        width: 22px;
+        height: 22px;
+        accent-color: var(--accent);
+        flex: none;
+      }
+
+      .dot {
+        width: 10px;
+        height: 36px;
+        border-radius: 5px;
+        flex: none;
+      }
+
+      .blk b {
+        display: block;
+        font-weight: 600;
+      }
+
+      .blk i {
+        font-style: normal;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .row.brk {
+        background: var(--brk);
+        padding: 6px 12px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .row.done b {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+
+      .daily-progress {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        align-items: center;
+        margin: 0 0 12px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .task-form {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .task-form label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+      }
+
+      .task-form input {
+        min-width: 0;
+        flex: 1;
+        font: inherit;
+        color: var(--ink);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+
+      .custom-tasks {
+        list-style: none;
+        margin: 8px 0 0;
+        padding: 0;
+      }
+
+      .custom-tasks li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .custom-tasks li:first-child {
+        border-radius: 10px 10px 0 0;
+      }
+
+      .custom-tasks li:last-child {
+        border-bottom: 0;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .custom-tasks input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--accent);
+        flex: none;
+      }
+
+      .custom-tasks .task-name {
+        flex: 1;
+        overflow-wrap: anywhere;
+      }
+
+      .custom-tasks li.done .task-name {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+
+      .custom-tasks .remove-task {
+        padding: 4px 8px;
+        color: var(--muted);
+      }
+
+      .empty-tasks {
+        color: var(--muted);
+        font-size: 14px;
+        padding: 8px 2px;
+      }
+
+      .nav,
+      .form-row,
+      .filters {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .nav h2 {
+        margin: 0;
+      }
+
+      .nav input,
+      .form-row input,
+      .form-row select,
+      .filters input,
+      .filters select {
+        min-width: 0;
+        font: inherit;
+        color: var(--ink);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 10px;
+      }
+
+      .nav input[type="date"],
+      .form-row input[type="date"] {
+        width: auto;
+      }
+
+      button[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--surface);
+      }
+
+      .pace {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 6px solid var(--accent);
+        border-radius: 12px;
+        padding: 8px 14px;
+      }
+
+      .pace.behind {
+        border-left-color: var(--c4);
+      }
+
+      .pace p:last-child {
+        margin-bottom: 4px;
+      }
+
+      .tw,
+      .muted {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      button.day {
+        width: 100%;
+        font: inherit;
+        font-size: 12px;
+        cursor: pointer;
+      }
+
+      .day.selected {
+        background: var(--brk);
+      }
+
+      .day em {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        font-style: normal;
+        margin-top: 4px;
+      }
+
+      .chapter-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: 12px;
+        padding: 7px 0;
+        border-top: 1px solid var(--line);
+        font-size: 14px;
+      }
+
+      .chapter-row[hidden] {
+        display: none;
+      }
+
+      .chapter-row small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .chapter-row label {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+        font-size: 12px;
+      }
+
+      .chapter-row input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+      }
+
+      .chapter-row.learned .chapter-name {
+        opacity: 0.75;
+      }
+
+      .chapter-row.revised .chapter-name {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+
+      .log-list {
+        display: grid;
+        gap: 8px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .log-list li,
+      .plan-item {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 12px;
+      }
+
+      .log-list li p {
+        margin: 4px 0;
+      }
+
+      .log-list small {
+        color: var(--muted);
+      }
+
+      .plan-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .plan-item.current {
+        border-color: var(--hi);
+        box-shadow: inset 4px 0 0 var(--hi);
+      }
+
+      .plan-item p {
+        margin: 5px 0 0;
+      }
+
+      .tips {
+        display: grid;
+        gap: 8px;
+      }
+
+      .tips article {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 14px;
+      }
+
+      .form-row {
+        margin: 10px 0;
+      }
+
+      .form-row input[type="text"] {
+        flex: 1;
+      }
+
+      .week {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+      }
+
+      .day {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 8px 6px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .day.today {
+        outline: 3px solid var(--hi);
+        outline-offset: 1px;
+      }
+
+      .day h3 {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .day span {
+        display: block;
+        border-radius: 4px;
+        margin-top: 3px;
+        padding: 1px 0;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .bar {
+        height: 8px;
+        background: var(--line);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .bar > div {
+        height: 100%;
+        background: var(--accent);
+        width: 0;
+        transition: width 0.25s;
+      }
+
+      details {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin-bottom: 8px;
+      }
+
+      summary {
+        cursor: pointer;
+        padding: 12px 14px;
+        display: grid;
+        grid-template-columns: 1fr 90px 44px;
+        gap: 10px;
+        align-items: center;
+        font-weight: 600;
+        list-style: none;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary em {
+        font-style: normal;
+        color: var(--muted);
+        font-size: 14px;
+        text-align: right;
+      }
+
+      .ch {
+        padding: 4px 14px 12px;
+      }
+
+      .ch label {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 5px 0;
+        font-size: 15px;
+      }
+
+      .ch input {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--accent);
+        margin-top: 2px;
+        flex: none;
+      }
+
+      .ch label.on span {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+
+      .total {
+        display: grid;
+        grid-template-columns: 1fr 60px;
+        gap: 12px;
+        align-items: center;
+        margin-bottom: 12px;
+        font-weight: 600;
+      }
+
+      .phases {
+        display: grid;
+        gap: 8px;
+      }
+
+      .phases div {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 15px;
+      }
+
+      .phases div.now {
+        border-color: var(--hi);
+        box-shadow: inset 4px 0 0 var(--hi);
+      }
+
+      button {
+        font: inherit;
+        background: var(--surface);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      button:focus-visible,
+      summary:focus-visible,
+      input:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      footer {
+        margin-top: 32px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 560px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .stat {
+          padding: 12px;
+        }
+
+        .row {
+          grid-template-columns: 84px 1fr;
+        }
+
+        .week {
+          grid-template-columns: repeat(7, minmax(0, 1fr));
+          font-size: 11px;
+        }
+
+        .chapter-row {
+          grid-template-columns: minmax(0, 1fr) auto;
+        }
+
+        .chapter-row label:last-child {
+          grid-column: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="hero">
+        <div class="count" id="count">97<small id="countsub">days to the board exam on 17 February 2027 (13 weeks 6 days)</small></div>
+        <div class="phase" id="phase">Finish the syllabus<span>Study new chapters in the first 2 blocks, then revise and practise. Goal: every chapter covered by 31 December.</span></div>
+      </div>
+
+      <section aria-labelledby="overviewTitle">
+        <h2 id="overviewTitle">Progress at a glance</h2>
+        <div class="stats">
+          <div class="stat"><strong id="todayStat">0/0</strong><span id="todayStatLabel">today’s checklist complete</span></div>
+          <div class="stat"><strong id="weekStat">0/0</strong><span>study blocks completed this week</span></div>
+          <div class="stat"><strong id="chapterStat">0/87</strong><span>chapters learned</span></div>
+          <div class="stat"><strong id="revisionStat">0/87</strong><span>chapters revised</span></div>
+          <div class="stat"><strong id="streakStat">0 days</strong><span>current study streak</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Pace check</h2>
+        <div class="pace" id="paceBox">
+          <p id="paceMessage">Set a deadline and start tracking chapters to see your pace.</p>
+          <p>Finish learning new chapters by <input id="deadline" type="date" aria-label="Deadline for learning new chapters" /></p>
+          <p class="tw" id="weekFocus"></p>
+        </div>
+      </section>
+
+      <section>
+        <div class="nav">
+          <button id="prevDay" type="button" aria-label="Previous day">‹</button>
+          <h2 id="todayTitle">Thu</h2>
+          <button id="nextDay" type="button" aria-label="Next day">›</button>
+          <input id="datePicker" type="date" aria-label="Choose a checklist date" />
+          <button id="goToday" type="button">Today</button>
+        </div>
+        <p class="sub" id="todaySub">Five study blocks, 10-minute breaks, dinner at 8:15.</p>
+        <div class="daily-progress">
+          <div class="bar" id="todayProgress" role="progressbar" aria-label="Today's checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="todayProgressBar"></div></div>
+          <span id="todayProgressText">0 of 0 done</span>
+        </div>
+        <div id="today">
+          <div class="row"><span class="time">4:30 – 5:20</span><label class="blk"><input type="checkbox" data-b="2026-11-12_0"><span class="dot" style="background:var(--c0)"></span><span><b>Maths</b><i>Finish chapters</i></span></label></div>
+          <div class="row brk"><span class="time">5:20 – 5:30</span><span>Break</span></div>
+          <div class="row"><span class="time">5:30 – 6:20</span><label class="blk"><input type="checkbox" data-b="2026-11-12_1"><span class="dot" style="background:var(--c1)"></span><span><b>Science</b><i>Finish chapters</i></span></label></div>
+          <div class="row brk"><span class="time">6:20 – 6:30</span><span>Break</span></div>
+          <div class="row"><span class="time">6:30 – 7:20</span><label class="blk"><input type="checkbox" data-b="2026-11-12_2"><span class="dot" style="background:var(--c2)"></span><span><b>Social Science</b><i>Revision and practice</i></span></label></div>
+          <div class="row brk"><span class="time">7:20 – 8:00</span><span>Break and dinner (7:30 – 8:00)</span></div>
+          <div class="row"><span class="time">8:00 – 8:50</span><label class="blk"><input type="checkbox" data-b="2026-11-12_3"><span class="dot" style="background:var(--c3)"></span><span><b>English</b><i>Revision and practice</i></span></label></div>
+          <div class="row brk"><span class="time">8:50 – 9:00</span><span>Break</span></div>
+          <div class="row"><span class="time">9:00 – 9:45</span><label class="blk"><input type="checkbox" data-b="2026-11-12_4"><span class="dot" style="background:var(--c5)"></span><span><b>AI (417)</b><i>Revision and practice</i></span></label></div>
+          <div class="row"><span class="time">9:45 – 10:00</span><label class="blk"><input type="checkbox" data-b="2026-11-12_r"><span class="dot" style="background:var(--muted)"></span><span><b>Recap of today’s topics</b><i>15 minutes, close your books and recall</i></span></label></div>
+        </div>
+        <form class="task-form" id="taskForm">
+          <label for="taskInput">Add a personal task to today’s checklist</label>
+          <input id="taskInput" name="task" type="text" maxlength="120" placeholder="Add your own task…" autocomplete="off" />
+          <button type="submit">Add task</button>
+        </form>
+        <ul class="custom-tasks" id="customTasks" aria-label="Personal tasks for today"></ul>
+      </section>
+
+      <section>
+        <h2>This week</h2>
+        <div class="week" id="week">
+          <div class="day"><h3>Mon</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c3)">Eng</span><span style="background:var(--c4)">Hindi</span></div>
+          <div class="day"><h3>Tue</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c3)">Eng</span><span style="background:var(--c5)">AI</span></div>
+          <div class="day"><h3>Wed</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c4)">Hindi</span><span style="background:var(--c3)">Eng</span></div>
+          <div class="day today"><h3>Thu</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c3)">Eng</span><span style="background:var(--c5)">AI</span></div>
+          <div class="day"><h3>Fri</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c4)">Hindi</span><span style="background:var(--c3)">Eng</span></div>
+          <div class="day"><h3>Sat</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c2)">SST</span><span style="background:var(--c3)">Eng</span><span style="background:var(--c5)">AI</span></div>
+          <div class="day"><h3>Sun</h3><span style="background:var(--c0)">Maths</span><span style="background:var(--c1)">Sci</span><span style="background:var(--c4)">Hindi</span><span style="background:var(--c5)">AI</span></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Syllabus progress</h2>
+        <div class="total">
+          <div class="bar"><div id="totalBar" style="width: 0%;"></div></div>
+          <span id="totalPct">0%</span>
+        </div>
+
+        <div class="filters" id="chapterFilters" aria-label="Filter chapters">
+          <button type="button" data-filter="all" aria-pressed="true">All chapters</button>
+          <button type="button" data-filter="learn" aria-pressed="false">To learn</button>
+          <button type="button" data-filter="revise" aria-pressed="false">To revise</button>
+        </div>
+        <div id="tracker">
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c0);padding-left:10px">Maths</span>
+              <div class="bar"><div id="b0" style="width: 0%;"></div></div>
+              <em id="p0">0/14</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="0_0"><span>Real Numbers</span></label>
+              <label><input type="checkbox" data-c="0_1"><span>Polynomials</span></label>
+              <label><input type="checkbox" data-c="0_2"><span>Pair of Linear Equations</span></label>
+              <label><input type="checkbox" data-c="0_3"><span>Quadratic Equations</span></label>
+              <label><input type="checkbox" data-c="0_4"><span>Arithmetic Progressions</span></label>
+              <label><input type="checkbox" data-c="0_5"><span>Triangles</span></label>
+              <label><input type="checkbox" data-c="0_6"><span>Coordinate Geometry</span></label>
+              <label><input type="checkbox" data-c="0_7"><span>Introduction to Trigonometry</span></label>
+              <label><input type="checkbox" data-c="0_8"><span>Applications of Trigonometry</span></label>
+              <label><input type="checkbox" data-c="0_9"><span>Circles</span></label>
+              <label><input type="checkbox" data-c="0_10"><span>Areas Related to Circles</span></label>
+              <label><input type="checkbox" data-c="0_11"><span>Surface Areas and Volumes</span></label>
+              <label><input type="checkbox" data-c="0_12"><span>Statistics</span></label>
+              <label><input type="checkbox" data-c="0_13"><span>Probability</span></label>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c1);padding-left:10px">Science</span>
+              <div class="bar"><div id="b1" style="width: 0%;"></div></div>
+              <em id="p1">0/13</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="1_0"><span>Chemical Reactions and Equations</span></label>
+              <label><input type="checkbox" data-c="1_1"><span>Acids, Bases and Salts</span></label>
+              <label><input type="checkbox" data-c="1_2"><span>Metals and Non-metals</span></label>
+              <label><input type="checkbox" data-c="1_3"><span>Carbon and its Compounds</span></label>
+              <label><input type="checkbox" data-c="1_4"><span>Life Processes</span></label>
+              <label><input type="checkbox" data-c="1_5"><span>Control and Coordination</span></label>
+              <label><input type="checkbox" data-c="1_6"><span>How do Organisms Reproduce?</span></label>
+              <label><input type="checkbox" data-c="1_7"><span>Heredity</span></label>
+              <label><input type="checkbox" data-c="1_8"><span>Light: Reflection and Refraction</span></label>
+              <label><input type="checkbox" data-c="1_9"><span>Human Eye and the Colourful World</span></label>
+              <label><input type="checkbox" data-c="1_10"><span>Electricity</span></label>
+              <label><input type="checkbox" data-c="1_11"><span>Magnetic Effects of Electric Current</span></label>
+              <label><input type="checkbox" data-c="1_12"><span>Our Environment</span></label>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c2);padding-left:10px">Social Science</span>
+              <div class="bar"><div id="b2" style="width: 0%;"></div></div>
+              <em id="p2">0/22</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="2_0"><span>History: Rise of Nationalism in Europe</span></label>
+              <label><input type="checkbox" data-c="2_1"><span>History: Nationalism in India</span></label>
+              <label><input type="checkbox" data-c="2_2"><span>History: The Making of a Global World</span></label>
+              <label><input type="checkbox" data-c="2_3"><span>History: The Age of Industrialisation</span></label>
+              <label><input type="checkbox" data-c="2_4"><span>History: Print Culture and the Modern World</span></label>
+              <label><input type="checkbox" data-c="2_5"><span>Geography: Resources and Development</span></label>
+              <label><input type="checkbox" data-c="2_6"><span>Geography: Forest and Wildlife Resources</span></label>
+              <label><input type="checkbox" data-c="2_7"><span>Geography: Water Resources</span></label>
+              <label><input type="checkbox" data-c="2_8"><span>Geography: Agriculture</span></label>
+              <label><input type="checkbox" data-c="2_9"><span>Geography: Minerals and Energy Resources</span></label>
+              <label><input type="checkbox" data-c="2_10"><span>Geography: Manufacturing Industries</span></label>
+              <label><input type="checkbox" data-c="2_11"><span>Geography: Lifelines of National Economy</span></label>
+              <label><input type="checkbox" data-c="2_12"><span>Polity: Power Sharing</span></label>
+              <label><input type="checkbox" data-c="2_13"><span>Polity: Federalism</span></label>
+              <label><input type="checkbox" data-c="2_14"><span>Polity: Gender, Religion and Caste</span></label>
+              <label><input type="checkbox" data-c="2_15"><span>Polity: Political Parties</span></label>
+              <label><input type="checkbox" data-c="2_16"><span>Polity: Outcomes of Democracy</span></label>
+              <label><input type="checkbox" data-c="2_17"><span>Economics: Development</span></label>
+              <label><input type="checkbox" data-c="2_18"><span>Economics: Sectors of the Indian Economy</span></label>
+              <label><input type="checkbox" data-c="2_19"><span>Economics: Money and Credit</span></label>
+              <label><input type="checkbox" data-c="2_20"><span>Economics: Globalisation and the Indian Economy</span></label>
+              <label><input type="checkbox" data-c="2_21"><span>Economics: Consumer Rights</span></label>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c3);padding-left:10px">English</span>
+              <div class="bar"><div id="b3" style="width: 0%;"></div></div>
+              <em id="p3">0/24</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="3_0"><span>Reading: unseen passages</span></label>
+              <label><input type="checkbox" data-c="3_1"><span>Writing: formal letter</span></label>
+              <label><input type="checkbox" data-c="3_2"><span>Writing: analytical paragraph</span></label>
+              <label><input type="checkbox" data-c="3_3"><span>Grammar: tenses, modals, agreement, determiners, reported speech</span></label>
+              <label><input type="checkbox" data-c="3_4"><span>FF: A Letter to God</span></label>
+              <label><input type="checkbox" data-c="3_5"><span>FF: Nelson Mandela: Long Walk to Freedom</span></label>
+              <label><input type="checkbox" data-c="3_6"><span>FF: Two Stories About Flying</span></label>
+              <label><input type="checkbox" data-c="3_7"><span>FF: From the Diary of Anne Frank</span></label>
+              <label><input type="checkbox" data-c="3_8"><span>FF: Glimpses of India</span></label>
+              <label><input type="checkbox" data-c="3_9"><span>FF: Mijbil the Otter</span></label>
+              <label><input type="checkbox" data-c="3_10"><span>FF: Madam Rides the Bus</span></label>
+              <label><input type="checkbox" data-c="3_11"><span>FF: The Sermon at Benares</span></label>
+              <label><input type="checkbox" data-c="3_12"><span>FF: The Proposal</span></label>
+              <label><input type="checkbox" data-c="3_13"><span>FF poems 1–5: Dust of Snow to The Ball Poem</span></label>
+              <label><input type="checkbox" data-c="3_14"><span>FF poems 6–10: Amanda! to For Anne Gregory</span></label>
+              <label><input type="checkbox" data-c="3_15"><span>FWF: A Triumph of Surgery</span></label>
+              <label><input type="checkbox" data-c="3_16"><span>FWF: The Thief’s Story</span></label>
+              <label><input type="checkbox" data-c="3_17"><span>FWF: The Midnight Visitor</span></label>
+              <label><input type="checkbox" data-c="3_18"><span>FWF: A Question of Trust</span></label>
+              <label><input type="checkbox" data-c="3_19"><span>FWF: Footprints Without Feet</span></label>
+              <label><input type="checkbox" data-c="3_20"><span>FWF: The Making of a Scientist</span></label>
+              <label><input type="checkbox" data-c="3_21"><span>FWF: The Necklace</span></label>
+              <label><input type="checkbox" data-c="3_22"><span>FWF: Bholi</span></label>
+              <label><input type="checkbox" data-c="3_23"><span>FWF: The Book That Saved the Earth</span></label>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c4);padding-left:10px">Hindi B</span>
+              <div class="bar"><div id="b4" style="width: 0%;"></div></div>
+              <em id="p4">0/6</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="4_0"><span>Unseen passages</span></label>
+              <label><input type="checkbox" data-c="4_1"><span>Writing: patra, anuchchhed, vigyapan, sandesh</span></label>
+              <label><input type="checkbox" data-c="4_2"><span>Grammar (vyakaran)</span></label>
+              <label><input type="checkbox" data-c="4_3"><span>Sparsh Part 2: prose</span></label>
+              <label><input type="checkbox" data-c="4_4"><span>Sparsh Part 2: poetry</span></label>
+              <label><input type="checkbox" data-c="4_5"><span>Sanchayan Part 2</span></label>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span style="border-left:6px solid var(--c5);padding-left:10px">AI (417)</span>
+              <div class="bar"><div id="b5" style="width: 0%;"></div></div>
+              <em id="p5">0/8</em>
+            </summary>
+            <div class="ch">
+              <label><input type="checkbox" data-c="5_0"><span>Employability skills: communication, self-management, ICT</span></label>
+              <label><input type="checkbox" data-c="5_1"><span>Employability skills: entrepreneurial and green skills</span></label>
+              <label><input type="checkbox" data-c="5_2"><span>AI project cycle and ethics</span></label>
+              <label><input type="checkbox" data-c="5_3"><span>Modelling and evaluating AI models</span></label>
+              <label><input type="checkbox" data-c="5_4"><span>Data science and statistics</span></label>
+              <label><input type="checkbox" data-c="5_5"><span>Computer Vision</span></label>
+              <label><input type="checkbox" data-c="5_6"><span>Natural Language Processing</span></label>
+              <label><input type="checkbox" data-c="5_7"><span>Python</span></label>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section>
+        <h2>14-week plan to 17 February</h2>
+        <p class="sub">A flexible weekly guide. Keep your chapter tracker as the source of truth.</p>
+        <div class="plan-list" id="planList"></div>
+      </section>
+
+      <section>
+        <h2>Mock papers and error log</h2>
+        <p class="sub">Record mock scores, note mistakes, and track which ones you have revisited.</p>
+        <form class="form-row" id="mockForm">
+          <label for="mockSubject">Mock subject</label>
+          <select id="mockSubject" aria-label="Mock paper subject"></select>
+          <label for="mockScore">Mock score out of 80</label>
+          <input id="mockScore" type="number" min="0" max="80" step="1" placeholder="Score / 80" required />
+          <button type="submit">Save mock score</button>
+        </form>
+        <h3>Mock results</h3>
+        <ul class="log-list" id="mockLog"></ul>
+        <h3>Error log</h3>
+        <p class="sub">Write the mistake and the correction or next step. Mark it reviewed after you practise it again.</p>
+        <form class="form-row" id="errorForm">
+          <label for="errorSubject">Error subject</label>
+          <select id="errorSubject" aria-label="Error subject"></select>
+          <label for="errorText">Mistake</label>
+          <input id="errorText" type="text" maxlength="240" placeholder="Mistake → correction / next step" required />
+          <button type="submit">Add error</button>
+        </form>
+        <ul class="log-list" id="errorLog"></ul>
+      </section>
+
+      <section>
+        <h2>Study phases</h2>
+        <div class="phases" id="phases"></div>
+        <p style="margin-top: 12px; color: var(--muted);">Ticks save in this browser only. <button id="reset" type="button">Reset all ticks</button></p>
+        <p id="storageStatus" role="status" aria-live="polite" style="color: var(--muted); font-size: 13px;"></p>
+      </section>
+
+      <section>
+        <h2>Staying on track</h2>
+        <div class="tips">
+          <article><b>Track chapters honestly</b><br>A chapter counts as revised after you answer questions on it. Use NCERT first, then extra practice.</article>
+          <article><b>Active recall</b><br>Close the book, explain the idea, write the formula, then check.</article>
+          <article><b>Missed a day?</b><br>Move only essential work to Saturday catch-up. Don’t double every subject.</article>
+          <article><b>Rebalance from mocks</b><br>If a subject stays weak, give it a catch-up block while still touching all six weekly.</article>
+        </div>
+      </section>
+
+      <footer>
+        <p>Built from the CBSE 2026–27 syllabus. Check chapter lists against the official PDFs at cbseacademic.nic.in.</p>
+      </footer>
+    </main>
+
+    <script>
+      var EXAM = new Date(2027, 1, 17);
+      var JAN = new Date(2027, 0, 1);
+      var FEB = new Date(2027, 1, 1);
+      var SUBJ = [
+        { n: "Maths", s: "Maths", c: "var(--c0)", ch: ["Real Numbers","Polynomials","Pair of Linear Equations","Quadratic Equations","Arithmetic Progressions","Triangles","Coordinate Geometry","Introduction to Trigonometry","Applications of Trigonometry","Circles","Areas Related to Circles","Surface Areas and Volumes","Statistics","Probability"] },
+        { n: "Science", s: "Sci", c: "var(--c1)", ch: ["Chemical Reactions and Equations","Acids, Bases and Salts","Metals and Non-metals","Carbon and its Compounds","Life Processes","Control and Coordination","How do Organisms Reproduce?","Heredity","Light: Reflection and Refraction","Human Eye and the Colourful World","Electricity","Magnetic Effects of Electric Current","Our Environment"] },
+        { n: "Social Science", s: "SST", c: "var(--c2)", ch: ["History: Rise of Nationalism in Europe","History: Nationalism in India","History: The Making of a Global World","History: The Age of Industrialisation","History: Print Culture and the Modern World","Geography: Resources and Development","Geography: Forest and Wildlife Resources","Geography: Water Resources","Geography: Agriculture","Geography: Minerals and Energy Resources","Geography: Manufacturing Industries","Geography: Lifelines of National Economy","Polity: Power Sharing","Polity: Federalism","Polity: Gender, Religion and Caste","Polity: Political Parties","Polity: Outcomes of Democracy","Economics: Development","Economics: Sectors of the Indian Economy","Economics: Money and Credit","Economics: Globalisation and the Indian Economy","Economics: Consumer Rights"] },
+        { n: "English", s: "Eng", c: "var(--c3)", ch: ["Reading: unseen passages","Writing: formal letter","Writing: analytical paragraph","Grammar: tenses, modals, agreement, determiners, reported speech","FF: A Letter to God","FF: Nelson Mandela: Long Walk to Freedom","FF: Two Stories About Flying","FF: From the Diary of Anne Frank","FF: Glimpses of India","FF: Mijbil the Otter","FF: Madam Rides the Bus","FF: The Sermon at Benares","FF: The Proposal","FF poems 1–5: Dust of Snow to The Ball Poem","FF poems 6–10: Amanda! to For Anne Gregory","FWF: A Triumph of Surgery","FWF: The Thief’s Story","FWF: The Midnight Visitor","FWF: A Question of Trust","FWF: Footprints Without Feet","FWF: The Making of a Scientist","FWF: The Necklace","FWF: Bholi","FWF: The Book That Saved the Earth"] },
+        { n: "Hindi B", s: "Hindi", c: "var(--c4)", ch: ["Unseen passages","Writing: patra, anuchchhed, vigyapan, sandesh","Grammar (vyakaran)","Sparsh Part 2: prose","Sparsh Part 2: poetry","Sanchayan Part 2"] },
+        { n: "AI (417)", s: "AI", c: "var(--c5)", ch: ["Employability skills: communication, self-management, ICT","Employability skills: entrepreneurial and green skills","AI project cycle and ethics","Modelling and evaluating AI models","Data science and statistics","Computer Vision","Natural Language Processing","Python"] }
+      ];
+
+      var WEEK_PLAN = [
+        ["2026-11-12", "12–18 Nov", "Maths: Real Numbers, Polynomials. Science: Chemical Reactions and Equations. English: A Letter to God, Dust of Snow, Fire and Ice, tenses. Social Science: Rise of Nationalism in Europe, Resources and Development, Power Sharing, Development. Start one Hindi prose chapter and one AI unit."],
+        ["2026-11-19", "19–25 Nov", "Maths: Pair of Linear Equations. Science: Acids, Bases and Salts. English: Nelson Mandela and formal letter format. Social Science: Nationalism in India, Forest and Wildlife Resources, Federalism, Sectors of the Indian Economy. Hindi textbook study and Python basics."],
+        ["2026-11-26", "26 Nov–2 Dec", "Maths: Quadratic Equations. Science: Metals and Non-metals. English: Two Stories About Flying, modals, subject-verb agreement. Social Science: Making of a Global World, Water Resources, Gender, Religion and Caste, Money and Credit. Hindi unseen passages and short answers."],
+        ["2026-12-03", "3–9 Dec", "Maths: Arithmetic Progressions. Science: Carbon and its Compounds. English: Diary of Anne Frank and analytical paragraph. Social Science: Age of Industrialisation, Agriculture, Political Parties, Globalisation. Hindi revision and a short AI quiz."],
+        ["2026-12-10", "10–16 Dec", "Maths: Triangles. Science: Life Processes. English: Glimpses of India, The Ball Poem, determiners and reported speech. Social Science: Print Culture, Minerals and Energy Resources, Outcomes of Democracy, Consumer Rights. Hindi literature and writing practice."],
+        ["2026-12-17", "17–23 Dec", "Maths: Coordinate Geometry and Introduction to Trigonometry. Science: Control and Coordination, How do Organisms Reproduce? English: Mijbil the Otter, Amanda!, timed formal letter. Social Science: Manufacturing Industries; revise early History and Polity. Hindi and AI revision/catch-up."],
+        ["2026-12-24", "24–31 Dec", "Maths: Applications of Trigonometry and Circles. Science: Heredity and Light. English: Madam Rides the Bus, The Sermon at Benares, grammar review. Social Science: Lifelines of National Economy; revise Geography and Economics. Milestone: finish or flag every chapter and make a red/amber/green list per subject."],
+        ["2027-01-01", "1–7 Jan", "Shift to about 75% revision and practice. Maths: Areas Related to Circles. Science: Human Eye. English: The Proposal and unseen passages. Social Science: mixed map, case-based and short-answer practice. Sunday: first full mock; start the error log."],
+        ["2027-01-08", "8–14 Jan", "Maths: Surface Areas and Volumes. Science: Electricity. English: revise First Flight prose and poetry, writing, grammar. Social Science: mixed History and Geography. Sunday: mock and careful correction."],
+        ["2027-01-15", "15–21 Jan", "Maths: Statistics. Science: Magnetic Effects of Electric Current. English: Footprints Without Feet revision, analytical paragraph, formal letter. Social Science: mixed Polity and Economics. Sunday: mock in a rotating subject."],
+        ["2027-01-22", "22–28 Jan", "Maths: Probability and Algebra revision. Science: Our Environment and Chemistry revision. English: literature extracts and answer writing. Social Science: timed sections and map work. Sunday: mock; fix the top three errors."],
+        ["2027-01-29", "29 Jan–4 Feb", "Mixed Geometry and Trigonometry; mixed Biology and Physics; timed English and Hindi sections; timed Social Science answers. Sunday: mock."],
+        ["2027-02-05", "5–11 Feb", "Weak areas and timed practice in every subject. Revisit diagrams, formulas, definitions, maps, writing formats and literature points. Sunday: mock, then fix its errors."],
+        ["2027-02-12", "12–17 Feb", "Final consolidation: short mixed tests, flash recall and error-log review. Don’t relearn whole subjects. Protect your sleep."]
+      ];
+
+      var ROT = { 1: [0, 1, 2, 3, 4], 2: [0, 1, 2, 3, 5], 3: [0, 1, 2, 4, 3], 4: [0, 1, 2, 3, 5], 5: [0, 1, 2, 4, 3], 6: [0, 1, 2, 3, 5], 0: [0, 1, 4, 5] };
+      var DN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var TW = [["4:30", "5:20"], ["5:30", "6:20"], ["6:30", "7:20"], ["8:45", "9:35"], ["9:45", "10:30"]];
+      var TS = [["4:30", "5:15"], ["5:30", "6:15"], ["6:30", "7:15"], ["8:45", "9:30"]];
+      var S = { ch: {}, blk: {}, tasks: {}, learned: {}, revised: {}, mocks: [], errors: [], deadline: "" };
+      var storageMessage = "Progress saves in this browser.";
+
+      try {
+        var raw = localStorage.getItem("cbse10plan");
+        if (raw) {
+          var saved = JSON.parse(raw);
+          if (!saved || typeof saved !== "object" || Array.isArray(saved)) {
+            throw new Error("Saved data is not a planner object.");
+          }
+          S = saved;
+        }
+      } catch (e) {
+        S = { ch: {}, blk: {}, tasks: {}, learned: {}, revised: {}, mocks: [], errors: [], deadline: "" };
+        storageMessage = "Saved progress could not be read. A fresh checklist is open.";
+      }
+
+      if (!S.ch || typeof S.ch !== "object" || Array.isArray(S.ch)) S.ch = {};
+      if (!S.blk || typeof S.blk !== "object" || Array.isArray(S.blk)) S.blk = {};
+      if (!S.tasks || typeof S.tasks !== "object" || Array.isArray(S.tasks)) S.tasks = {};
+      if (!S.learned || typeof S.learned !== "object" || Array.isArray(S.learned)) S.learned = {};
+      if (!S.revised || typeof S.revised !== "object" || Array.isArray(S.revised)) S.revised = {};
+      if (!Array.isArray(S.mocks)) S.mocks = [];
+      if (!Array.isArray(S.errors)) S.errors = [];
+      Object.keys(S.ch).forEach(function (key) {
+        if (S.ch[key] && !S.learned[key]) S.learned[key] = true;
+      });
+
+      function save() {
+        try {
+          localStorage.setItem("cbse10plan", JSON.stringify(S));
+          storageMessage = "Progress saves in this browser.";
+        } catch (e) {
+          storageMessage = "Could not save progress in this browser. Check storage settings or free space.";
+        }
+        $("storageStatus").textContent = storageMessage;
+      }
+
+      function $(id) {
+        return document.getElementById(id);
+      }
+
+      function ymd(d) {
+        return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+      }
+
+      function isoDate(d) {
+        return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+      }
+
+      function parseDate(value) {
+        var parts = value.split("-");
+        return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      }
+
+      function dateLabel(d) {
+        return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+      }
+
+      function blockIdsForDate(date) {
+        var dow = date.getDay();
+        var ids;
+        if (dow === 0 && phaseOf(date) >= 2) {
+          ids = [0, 1, "r"];
+        } else if (dow === 0) {
+          ids = [0, 1, 2, 3, "r"];
+        } else {
+          ids = [0, 1, 2, 3, 4, "r"];
+        }
+        return ids.map(function (id) { return ymd(date) + "_" + id; });
+      }
+
+      function tasksForDate(date) {
+        var key = ymd(date);
+        if (!Array.isArray(S.tasks[key])) S.tasks[key] = [];
+        S.tasks[key] = S.tasks[key].filter(function (task) {
+          return task && typeof task.id === "string" && typeof task.text === "string";
+        });
+        return S.tasks[key];
+      }
+
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      var selectedDate = new Date(today);
+      var completionFilter = "all";
+      var days = Math.round((EXAM - today) / 864e5);
+
+      function phaseOf(d) {
+        return d < JAN ? 1 : d < FEB ? 2 : 3;
+      }
+
+      var PH = {
+        1: ["Finish the syllabus", "Study new chapters in the first 2 blocks, then revise and practise. Goal: every chapter covered by 31 December."],
+        2: ["Revise and mock papers", "Weak topics first, then practice papers. A timed mock paper every Sunday."],
+        3: ["Final revision", "Only short notes, formulas, past mistakes and previous year papers. Nothing new."]
+      };
+
+      function mode(ph, i) {
+        if (ph === 1) return i < 2 ? "Finish chapters" : "Revision and practice";
+        if (ph === 2) return i < 1 ? "Weak or new topics" : "Practice papers and problems";
+        return "Past papers and quick revision";
+      }
+
+      function isLearned(key) {
+        return !!S.learned[key] || !!S.ch[key];
+      }
+
+      function isRevised(key) {
+        return !!S.revised[key];
+      }
+
+      function pickChapter(subjectIndex, preferNew) {
+        var subject = SUBJ[subjectIndex];
+        var fresh = [];
+        var review = [];
+        subject.ch.forEach(function (name, chapterIndex) {
+          var key = subjectIndex + "_" + chapterIndex;
+          if (!isLearned(key)) fresh.push({ key: key, name: name, kind: "learn" });
+          else if (!isRevised(key)) review.push({ key: key, name: name, kind: "revise" });
+        });
+        return preferNew ? (fresh[0] || review[0] || null) : (review[0] || fresh[0] || null);
+      }
+
+      function hero() {
+        $("count").firstChild.nodeValue = days > 0 ? days : 0;
+        $("countsub").textContent = days > 0 ? "days to the board exam on 17 February 2027 (" + Math.floor(days / 7) + " weeks " + days % 7 + " days)" : "Board exams have begun";
+        var p = PH[phaseOf(today)];
+        $("phase").innerHTML = p[0] + "<span>" + p[1] + "</span>";
+      }
+
+      function todayPlan() {
+        var dow = selectedDate.getDay();
+        var ph = phaseOf(selectedDate);
+        var key = ymd(selectedDate);
+        var rot = ROT[dow];
+        var sun = dow === 0;
+        var isFuture = selectedDate > today;
+        var html = "";
+
+        $("todayTitle").textContent = DN[dow] + " " + dateLabel(selectedDate) + (sun ? " (lighter day)" : "");
+        $("datePicker").value = isoDate(selectedDate);
+        $("todaySub").textContent = (selectedDate.getTime() === today.getTime() ? "Today. " : isFuture ? "Future day preview. " : "Past day. ") +
+          (sun ? "Lighter schedule with extra breaks." : "Five study blocks, dinner 8:15–8:45, stop by 10:45.");
+
+        function brk(t, l) {
+          return '<div class="row brk"><span class="time">' + t + '</span><span>' + l + '</span></div>';
+        }
+
+        function blk(i, t, name, col, note, subjectIndex, preferNew) {
+          var id = key + "_" + i;
+          var savedBlock = S.blk[id];
+          var on = !!savedBlock;
+          var assignment = subjectIndex == null ? null : pickChapter(subjectIndex, preferNew);
+          if (assignment) note = (assignment.kind === "learn" ? "Learn: " : "Revise: ") + assignment.name;
+          else if (subjectIndex != null) note = "All chapters tracked. Use this block for practice questions.";
+          var data = assignment ? ' data-c="' + assignment.key + '" data-kind="' + assignment.kind + '"' : "";
+          return '<div class="row' + (on ? " done" : "") + '"><span class="time">' + t[0] + " – " + t[1] + '</span><label class="blk"><input type="checkbox" data-b="' + id + '"' + data + (on ? " checked" : "") + (isFuture ? " disabled" : "") + '><span class="dot" style="background:' + col + '"></span><span><b>' + name + '</b><i>' + note + '</i></span></label></div>';
+        }
+
+        if (sun && ph >= 2) {
+          var wk = Math.floor((selectedDate - new Date(2027, 0, 3)) / 6048e5);
+          var sj = SUBJ[((wk % 6) + 6) % 6];
+          html += blk(0, ["4:30", "7:30"], "Full mock paper: " + sj.n, sj.c, "Timed, 3 hours, exam conditions");
+          html += brk("7:30 – 8:15", "Long break");
+          html += brk("8:15 – 8:45", "Dinner break");
+          html += blk(1, ["8:45", "9:30"], "Review mock mistakes", sj.c, "Write corrections and weak topics");
+          html += brk("9:30 – 9:45", "Break");
+        } else if (sun) {
+          TS.forEach(function (t, i) {
+            var s = SUBJ[rot[i]];
+            if (i === 3) {
+              html += brk("7:15 – 8:15", "Long break");
+              html += brk("8:15 – 8:45", "Dinner break");
+            }
+            html += blk(i, t, s.n, s.c, mode(ph, i), rot[i], false);
+            if (i < 2) html += brk(t[1] + " – " + TS[i + 1][0], "Break");
+            if (i === 3) html += brk("9:30 – 9:45", "Break");
+          });
+        } else {
+          TW.forEach(function (t, i) {
+            var s = SUBJ[rot[i]];
+            html += blk(i, t, s.n, s.c, mode(ph, i), rot[i], ph === 1 && i < 2);
+            if (i < 2) html += brk(t[1] + " – " + TW[i + 1][0], "Break");
+            if (i === 2) html += brk("7:20 – 8:45", "Break and dinner (8:15 – 8:45)");
+            if (i === 3) html += brk(t[1] + " – " + TW[i + 1][0], "Break");
+          });
+        }
+
+        html += blk("r", sun ? ["9:45", "10:00"] : ["10:30", "10:45"], "Recap of today’s topics", "var(--muted)", "15 minutes, close your books and recall");
+        $("today").innerHTML = html;
+        $("taskInput").disabled = isFuture;
+        $("taskForm").querySelector("button").disabled = isFuture;
+
+        $("today").querySelectorAll("input").forEach(function (c) {
+          c.onchange = function () {
+            var oldBlock = S.blk[c.dataset.b];
+            if (c.checked) {
+              var stamp = Date.now();
+              if (c.dataset.c) {
+                S.blk[c.dataset.b] = { c: c.dataset.c, kind: c.dataset.kind, at: stamp };
+                S.learned[c.dataset.c] = S.learned[c.dataset.c] || stamp;
+                S.ch[c.dataset.c] = true;
+                if (c.dataset.kind === "revise") S.revised[c.dataset.c] = stamp;
+              } else {
+                S.blk[c.dataset.b] = true;
+              }
+            } else {
+              delete S.blk[c.dataset.b];
+              if (oldBlock && oldBlock.c && oldBlock.at) {
+                if (S.learned[oldBlock.c] === oldBlock.at) {
+                  delete S.learned[oldBlock.c];
+                  delete S.ch[oldBlock.c];
+                }
+                if (S.revised[oldBlock.c] === oldBlock.at) delete S.revised[oldBlock.c];
+              }
+            }
+            save();
+            c.closest(".row").classList.toggle("done", c.checked);
+            rows();
+            renderWeekPlan();
+            renderPace();
+            updateProgress();
+          };
+        });
+      }
+
+      function renderCustomTasks() {
+        var list = $("customTasks");
+        var tasks = tasksForDate(selectedDate);
+        var readOnly = selectedDate > today;
+        list.textContent = "";
+
+        if (tasks.length === 0) {
+          var empty = document.createElement("li");
+          empty.className = "empty-tasks";
+          empty.textContent = "Add any extra tasks you want to remember today.";
+          list.appendChild(empty);
+          return;
+        }
+
+        tasks.forEach(function (task) {
+          var item = document.createElement("li");
+          item.classList.toggle("done", !!task.done);
+
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = !!task.done;
+          checkbox.disabled = readOnly;
+          checkbox.setAttribute("aria-label", "Complete task: " + task.text);
+          checkbox.onchange = function () {
+            task.done = checkbox.checked;
+            item.classList.toggle("done", task.done);
+            save();
+            updateProgress();
+          };
+
+          var name = document.createElement("span");
+          name.className = "task-name";
+          name.textContent = task.text;
+
+          var remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "remove-task";
+          remove.textContent = "Remove";
+          remove.disabled = readOnly;
+          remove.setAttribute("aria-label", "Remove task: " + task.text);
+          remove.onclick = function () {
+            S.tasks[ymd(selectedDate)] = tasksForDate(selectedDate).filter(function (entry) {
+              return entry.id !== task.id;
+            });
+            save();
+            renderCustomTasks();
+            updateProgress();
+          };
+
+          item.appendChild(checkbox);
+          item.appendChild(name);
+          item.appendChild(remove);
+          list.appendChild(item);
+        });
+      }
+
+      function updateProgress() {
+        var todayBlocks = blockIdsForDate(selectedDate);
+        var tasks = tasksForDate(selectedDate);
+        var todayTotal = todayBlocks.length + tasks.length;
+        var todayDone = todayBlocks.filter(function (id) { return !!S.blk[id]; }).length +
+          tasks.filter(function (task) { return !!task.done; }).length;
+        var todayPct = todayTotal ? Math.round(100 * todayDone / todayTotal) : 0;
+        $("todayStat").textContent = todayDone + "/" + todayTotal;
+        $("todayProgressText").textContent = todayDone + " of " + todayTotal + " done";
+        $("todayStatLabel").textContent = selectedDate.getTime() === today.getTime() ? "today’s checklist complete" : dateLabel(selectedDate) + " checklist complete";
+        $("todayProgress").setAttribute("aria-valuenow", todayPct);
+        $("todayProgressBar").style.width = todayPct + "%";
+
+        var weekStart = new Date(selectedDate);
+        weekStart.setDate(selectedDate.getDate() - ((selectedDate.getDay() + 6) % 7));
+        var weekDone = 0;
+        var weekTotal = 0;
+        for (var day = 0; day < 7; day++) {
+          var date = new Date(weekStart);
+          date.setDate(weekStart.getDate() + day);
+          var ids = blockIdsForDate(date);
+          weekTotal += ids.length;
+          weekDone += ids.filter(function (id) { return !!S.blk[id]; }).length;
+        }
+        $("weekStat").textContent = weekDone + "/" + weekTotal;
+
+        var chapterTotal = 0;
+        var chapterDone = 0;
+        var revisedTotal = 0;
+        SUBJ.forEach(function (subject, subjectIndex) {
+          subject.ch.forEach(function (_, chapterIndex) {
+            chapterTotal++;
+            var chapterKey = subjectIndex + "_" + chapterIndex;
+            if (isLearned(chapterKey)) chapterDone++;
+            if (isRevised(chapterKey)) revisedTotal++;
+          });
+        });
+        $("chapterStat").textContent = chapterDone + "/" + chapterTotal;
+        $("revisionStat").textContent = revisedTotal + "/" + chapterTotal;
+        $("streakStat").textContent = calculateStreak() + " days";
+      }
+
+      function weekView() {
+        var monday = new Date(selectedDate);
+        monday.setDate(selectedDate.getDate() - ((selectedDate.getDay() + 6) % 7));
+        var h = "";
+        for (var k = 0; k < 7; k++) {
+          var date = new Date(monday);
+          date.setDate(monday.getDate() + k);
+          var dow = date.getDay();
+          var prefix = ymd(date) + "_";
+          var done = Object.keys(S.blk).filter(function (id) {
+            return id.indexOf(prefix) === 0 && !!S.blk[id];
+          }).length;
+          var subjects = dow === 0
+            ? '<span style="background:var(--muted)">' + (phaseOf(date) >= 2 ? "Mock" : "Light day") + '</span>'
+            : ROT[dow].map(function (subjectIndex) {
+              return '<span style="background:' + SUBJ[subjectIndex].c + '">' + SUBJ[subjectIndex].s + '</span>';
+            }).join("");
+          h += '<button type="button" class="day' +
+            (date.getTime() === today.getTime() ? " today" : "") +
+            (date.getTime() === selectedDate.getTime() ? " selected" : "") +
+            '" data-date="' + date.getTime() + '"><h3>' + DN[dow] + " " + date.getDate() +
+            '</h3>' + subjects + '<em>' + done + ' blocks done</em></button>';
+        }
+        $("week").innerHTML = h;
+        $("week").querySelectorAll("button[data-date]").forEach(function (button) {
+          button.onclick = function () {
+            selectedDate = new Date(Number(button.dataset.date));
+            renderSelectedDate();
+          };
+        });
+      }
+
+      function tracker() {
+        var h = "";
+        SUBJ.forEach(function (s, si) {
+          h += '<details><summary><span style="border-left:6px solid ' + s.c + ';padding-left:10px">' + s.n + '</span><div class="bar"><div id="b' + si + '"></div></div><em id="p' + si + '"></em></summary><div class="ch">' +
+            s.ch.map(function (chapter, ci) {
+              var key = si + "_" + ci;
+              return '<div class="chapter-row" data-chapter="' + key + '"><span class="chapter-name">' + chapter + '<small></small></span><label><input type="checkbox" data-learn="' + key + '">Learned</label><label><input type="checkbox" data-revise="' + key + '">Revised</label></div>';
+            }).join("") + '</div></details>';
+        });
+        $("tracker").innerHTML = h;
+
+        $("tracker").querySelectorAll("input[data-learn], input[data-revise]").forEach(function (checkbox) {
+          checkbox.onchange = function () {
+            var key = checkbox.dataset.learn || checkbox.dataset.revise;
+            if (checkbox.dataset.learn) {
+              if (checkbox.checked) {
+                S.learned[key] = Date.now();
+                S.ch[key] = true;
+              } else {
+                delete S.learned[key];
+                delete S.revised[key];
+                delete S.ch[key];
+              }
+            } else if (checkbox.checked) {
+              if (!isLearned(key)) {
+                S.learned[key] = Date.now();
+                S.ch[key] = true;
+              }
+              S.revised[key] = Date.now();
+            } else {
+              delete S.revised[key];
+            }
+            save();
+            rows();
+            renderPace();
+            prog();
+          };
+        });
+
+        $("chapterFilters").querySelectorAll("button[data-filter]").forEach(function (button) {
+          button.onclick = function () {
+            completionFilter = button.dataset.filter;
+            rows();
+          };
+        });
+        rows();
+        prog();
+      }
+
+      function rows() {
+        $("chapterFilters").querySelectorAll("button[data-filter]").forEach(function (button) {
+          button.setAttribute("aria-pressed", String(button.dataset.filter === completionFilter));
+        });
+        $("tracker").querySelectorAll(".chapter-row").forEach(function (row) {
+          var key = row.dataset.chapter;
+          var learned = isLearned(key);
+          var revised = isRevised(key);
+          row.querySelector("[data-learn]").checked = learned;
+          row.querySelector("[data-revise]").checked = revised;
+          row.classList.toggle("learned", learned);
+          row.classList.toggle("revised", revised);
+          var status = row.querySelector("small");
+          status.textContent = learned && typeof S.learned[key] === "number"
+            ? "Learned " + dateLabel(new Date(S.learned[key]))
+            : "";
+          row.hidden = completionFilter === "learn" ? learned :
+            completionFilter === "revise" ? (!learned || revised) : false;
+        });
+      }
+
+      function prog() {
+        var T = 0;
+        var learnedTotal = 0;
+        var revisedTotal = 0;
+        SUBJ.forEach(function (s, si) {
+          var learned = 0;
+          var revised = 0;
+          s.ch.forEach(function (_, ci) {
+            var key = si + "_" + ci;
+            if (isLearned(key)) learned++;
+            if (isRevised(key)) revised++;
+          });
+          T += s.ch.length;
+          learnedTotal += learned;
+          revisedTotal += revised;
+          $("b" + si).style.width = (100 * learned / s.ch.length) + "%";
+          $("p" + si).textContent = learned + "/" + s.ch.length + " · " + revised + " rev";
+        });
+
+        var learnedPct = Math.round(100 * learnedTotal / T);
+        var revisedPct = Math.round(100 * revisedTotal / T);
+        $("totalBar").style.width = learnedPct + "%";
+        $("totalPct").textContent = learnedPct + "% learned · " + revisedPct + "% revised";
+        updateProgress();
+      }
+
+      function phases() {
+        var L = [
+          [1, "Now to 31 December", "Finish the syllabus. 60% revision and practice, 40% new chapters."],
+          [2, "1 to 31 January", "Revision and mock papers. 75% revision and practice, a timed mock every Sunday."],
+          [3, "1 to 17 February", "Final revision from short notes and past papers. No new topics."]
+        ];
+        var cur = phaseOf(today);
+        $("phases").innerHTML = L.map(function (l) {
+          return '<div class="' + (l[0] === cur ? "now" : "") + '"><b>' + l[1] + '</b><br>' + l[2] + '</div>';
+        }).join("");
+      }
+
+      function calculateStreak() {
+        function hasStudy(date) {
+          var prefix = ymd(date) + "_";
+          return Object.keys(S.blk).some(function (key) {
+            return key.indexOf(prefix) === 0 && !!S.blk[key];
+          });
+        }
+
+        var cursor = new Date(today);
+        if (!hasStudy(cursor)) cursor.setDate(cursor.getDate() - 1);
+        var streak = 0;
+        while (hasStudy(cursor)) {
+          streak++;
+          cursor.setDate(cursor.getDate() - 1);
+        }
+        return streak;
+      }
+
+      function renderPace() {
+        var total = 0;
+        var learned = 0;
+        SUBJ.forEach(function (subject, subjectIndex) {
+          subject.ch.forEach(function (_, chapterIndex) {
+            total++;
+            if (isLearned(subjectIndex + "_" + chapterIndex)) learned++;
+          });
+        });
+
+        var deadline = $("deadline").value ? parseDate($("deadline").value) : new Date(2026, 11, 31);
+        var remaining = total - learned;
+        var daysLeft = Math.ceil((deadline - today) / 864e5);
+        var weeksLeft = Math.max(daysLeft, 0) / 7;
+        var neededPerWeek = weeksLeft > 0 ? remaining / weeksLeft : remaining;
+        var cutoff = Date.now() - 14 * 864e5;
+        var recentlyLearned = Object.keys(S.learned).filter(function (key) {
+          return typeof S.learned[key] === "number" && S.learned[key] >= cutoff;
+        }).length;
+        var recentPace = recentlyLearned / 2;
+        var message;
+        var behind = false;
+
+        if (remaining === 0) {
+          message = "Every chapter is marked learned. Keep revising and practising questions.";
+        } else if (daysLeft <= 0) {
+          behind = true;
+          message = remaining + " chapters remain and your learning deadline has passed. Choose a new deadline.";
+        } else {
+          message = remaining + " chapters left and " + daysLeft + " days to your deadline: about " +
+            neededPerWeek.toFixed(1) + " chapters per week. ";
+          if (recentlyLearned === 0) {
+            message += "Your recent pace will appear after you mark chapters learned.";
+          } else if (recentPace >= neededPerWeek) {
+            message += "Your last two weeks: " + recentPace.toFixed(1) + " per week. On track.";
+          } else {
+            behind = true;
+            message += "Your last two weeks: " + recentPace.toFixed(1) + " per week. Consider moving a catch-up block to your weakest subject.";
+          }
+        }
+
+        $("paceMessage").textContent = message;
+        $("paceBox").classList.toggle("behind", behind);
+        $("streakStat").textContent = calculateStreak() + " days";
+
+        var week = WEEK_PLAN[0];
+        for (var i = 0; i < WEEK_PLAN.length; i++) {
+          var start = parseDate(WEEK_PLAN[i][0]);
+          var nextStart = i + 1 < WEEK_PLAN.length ? parseDate(WEEK_PLAN[i + 1][0]) : new Date(2027, 1, 18);
+          if (selectedDate >= start && selectedDate < nextStart) {
+            week = WEEK_PLAN[i];
+            break;
+          }
+          if (selectedDate >= nextStart) week = WEEK_PLAN[i];
+        }
+        $("weekFocus").innerHTML = "<b>Week focus: " + week[1] + "</b><br>" + week[2];
+      }
+
+      function renderWeekPlan() {
+        var html = "";
+        var selectedWeek = -1;
+        WEEK_PLAN.forEach(function (week, index) {
+          var start = parseDate(week[0]);
+          var nextStart = index + 1 < WEEK_PLAN.length ? parseDate(WEEK_PLAN[index + 1][0]) : new Date(2027, 1, 18);
+          if (selectedDate >= start && selectedDate < nextStart) selectedWeek = index;
+          html += '<article class="plan-item' + (selectedDate >= start && selectedDate < nextStart ? " current" : "") +
+            '"><b>Week ' + (index + 1) + ": " + week[1] + '</b><p>' + week[2] + '</p></article>';
+        });
+        $("planList").innerHTML = html;
+        return selectedWeek;
+      }
+
+      function renderLog() {
+        function emptyMessage(list, text) {
+          var empty = document.createElement("li");
+          empty.className = "muted";
+          empty.textContent = text;
+          list.appendChild(empty);
+        }
+
+        var mockList = $("mockLog");
+        mockList.textContent = "";
+        S.mocks.slice().sort(function (a, b) { return b.at - a.at; }).forEach(function (entry) {
+          var item = document.createElement("li");
+          var title = document.createElement("b");
+          var detail = document.createElement("p");
+          var date = document.createElement("small");
+          date.textContent = new Date(entry.at).toLocaleDateString();
+          title.textContent = entry.subject + " mock — " + entry.score + "/" + (entry.outOf || 100);
+          detail.textContent = "Review the paper, classify mistakes, then revisit the weakest topics.";
+          item.appendChild(title);
+          item.appendChild(detail);
+          item.appendChild(date);
+          mockList.appendChild(item);
+        });
+        if (!S.mocks.length) emptyMessage(mockList, "No mock scores yet.");
+
+        var errorList = $("errorLog");
+        errorList.textContent = "";
+        S.errors.slice().sort(function (a, b) { return b.at - a.at; }).forEach(function (entry) {
+          var item = document.createElement("li");
+          var title = document.createElement("b");
+          var detail = document.createElement("p");
+          var date = document.createElement("small");
+          title.textContent = entry.subject + (entry.done ? " — reviewed" : " — needs review");
+          detail.textContent = entry.text;
+          date.textContent = new Date(entry.at).toLocaleDateString();
+          if (entry.done) item.style.opacity = "0.65";
+
+          var resolve = document.createElement("button");
+          resolve.type = "button";
+          resolve.textContent = entry.done ? "Reopen" : "Mark reviewed";
+          resolve.onclick = function () {
+            var savedError = S.errors.find(function (error) { return error.id === entry.id; });
+            if (savedError) savedError.done = !savedError.done;
+            save();
+            renderLog();
+          };
+
+          item.appendChild(title);
+          item.appendChild(detail);
+          item.appendChild(date);
+          item.appendChild(document.createTextNode(" "));
+          item.appendChild(resolve);
+          errorList.appendChild(item);
+        });
+        if (!S.errors.length) emptyMessage(errorList, "No logged mistakes yet.");
+      }
+
+      function renderSelectedDate() {
+        todayPlan();
+        renderCustomTasks();
+        weekView();
+        renderWeekPlan();
+        renderPace();
+        updateProgress();
+      }
+
+      $("prevDay").onclick = function () {
+        selectedDate.setDate(selectedDate.getDate() - 1);
+        renderSelectedDate();
+      };
+      $("nextDay").onclick = function () {
+        selectedDate.setDate(selectedDate.getDate() + 1);
+        renderSelectedDate();
+      };
+      $("goToday").onclick = function () {
+        selectedDate = new Date(today);
+        renderSelectedDate();
+      };
+      $("datePicker").onchange = function () {
+        if (this.value) {
+          selectedDate = parseDate(this.value);
+          renderSelectedDate();
+        }
+      };
+      $("deadline").value = S.deadline || "2026-12-31";
+      $("deadline").onchange = function () {
+        S.deadline = this.value;
+        save();
+        renderPace();
+      };
+
+      [$("mockSubject"), $("errorSubject")].forEach(function (select) {
+        SUBJ.forEach(function (subject, index) {
+          var option = document.createElement("option");
+          option.value = String(index);
+          option.textContent = subject.n;
+          select.appendChild(option);
+        });
+      });
+
+      $("mockForm").onsubmit = function (event) {
+        event.preventDefault();
+        var score = Number($("mockScore").value);
+        if (!Number.isFinite(score) || score < 0 || score > 80) return;
+        S.mocks.push({ at: Date.now(), subject: SUBJ[Number($("mockSubject").value)].n, score: score, outOf: 80 });
+        save();
+        renderLog();
+        $("mockScore").value = "";
+      };
+
+      $("errorForm").onsubmit = function (event) {
+        event.preventDefault();
+        var text = $("errorText").value.trim();
+        if (!text) {
+          $("errorText").focus();
+          return;
+        }
+        S.errors.push({
+          id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
+          at: Date.now(),
+          subject: SUBJ[Number($("errorSubject").value)].n,
+          text: text,
+          done: false
+        });
+        save();
+        renderLog();
+        $("errorText").value = "";
+      };
+
+      $("reset").onclick = function () {
+        if (confirm("Clear all ticks?")) {
+          S.ch = {};
+          S.blk = {};
+          S.learned = {};
+          S.revised = {};
+          Object.keys(S.tasks).forEach(function (dateKey) {
+            if (Array.isArray(S.tasks[dateKey])) {
+              S.tasks[dateKey].forEach(function (task) {
+                if (task && typeof task === "object") task.done = false;
+              });
+            }
+          });
+          save();
+          todayPlan();
+          tracker();
+          renderCustomTasks();
+          renderWeekPlan();
+          renderPace();
+          updateProgress();
+          renderLog();
+        }
+      };
+
+      hero();
+      tracker();
+      phases();
+      renderLog();
+      renderSelectedDate();
+      $("storageStatus").textContent = storageMessage;
+      $("taskForm").onsubmit = function (event) {
+        event.preventDefault();
+        var input = $("taskInput");
+        var text = input.value.trim();
+        if (!text) {
+          input.focus();
+          return;
+        }
+        if (selectedDate > today) return;
+        tasksForDate(selectedDate).push({
+          id: String(Date.now()) + "-" + Math.random().toString(36).slice(2),
+          text: text,
+          done: false
+        });
+        input.value = "";
+        save();
+        renderCustomTasks();
+        updateProgress();
+        input.focus();
+      };
+    </script>
+  </body>
+</html>
